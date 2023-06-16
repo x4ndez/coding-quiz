@@ -3,6 +3,8 @@
     --gen-font-color: black;
     --background-color: white;
     --footer-color: #c4c4c4;
+    --button-color: var(--footer-color);
+    --button-hover-color: #aaaaaa;
 
 }
 
@@ -69,6 +71,32 @@ section {
     flex-shrink: 0;
     padding: 1%;
     box-sizing: border-box;
+
+}
+
+section ul {
+
+    list-style-type: none;
+
+}
+
+section ul li {
+
+    background-color: var(--button-color);
+
+    padding: 1%;
+    margin: 1%;
+    width: 30%;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+    transition: background-color 1s;
+
+}
+
+section ul li:hover {
+
+    background-color: var(--button-hover-color);
 
 }
 
