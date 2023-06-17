@@ -1,7 +1,39 @@
 const questionContainer = document.querySelector("#question-container");
+const startGameBtn = document.querySelector("#start-game");
 
 let questionAmount = 0;
 let responses = [];
+
+// function mainMenu() {
+
+//     while (questionContainer.firstChild) { //Clear the container
+
+//         questionContainer.removeChild(questionContainer.firstChild);
+
+//     }
+
+//     const startGameBtnEl = document.createElement("button");
+//     startGameBtnEl.
+//     const startGameBtn = document.querySelector("#start-game");
+
+
+
+// }
+
+function init() {
+
+    // Event Listener: Start Game
+
+    startGameBtn.addEventListener("click", function () {
+
+        console.log("Start button pressed!");
+        startGame();
+
+    });
+
+    // Event Listener: View Quiz History
+
+}
 
 function createQuestion(question, responses) {
 
@@ -34,8 +66,29 @@ function createQuestion(question, responses) {
         sectionIdEl.children[1].appendChild(responseEl[i]); //Append list item
 
     }
+
+    const listItem = sectionIdEl.children[1].children;
+
+    console.log(listItem);
+
+    //Add event listener for list items
+
+    // listItem.addEventListener("click", function () {
+
+    //     console.log("List Item presses!");
+
+    // });
+
 }
 
-;
-createQuestion("lol", responses = ["a", "b", "c", "d"]);
-createQuestion("lol", responses = ["a", "b", "c", "d"]);
+function startGame() {
+
+    createQuestion("lol", responses = ["a", "b", "c", "d"]);
+    window.location = "#q1";
+
+}
+
+// createQuestion("lol", responses = ["a", "b", "c", "d"]);
+// createQuestion("lol", responses = ["a", "b", "c", "d"]);
+
+init();
