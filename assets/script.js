@@ -34,6 +34,8 @@ function init() {
 
     });
 
+    // Event Listener: Dark theme
+
     // Event Listener: View Quiz History
 
 }
