@@ -12,6 +12,15 @@ const timerEl = document.querySelector("#timer");
 
 let questionAmount = 0;
 let responses = [];
+let answerObj = {
+
+    q1: "",
+    q2: "",
+    q3: "",
+    q4: "",
+    q5: "",
+
+}
 
 function init() {
 
@@ -60,38 +69,41 @@ function createQuestion(question, responses) {
 
     }
 
+}
+
+function startGame() {
+
+    let timeLeft = 60; //Set time limit
+
+    //Create pages with questions and answers
+    createQuestion("lol", responses = ["a", "b", "c", "d"]);
+    createQuestion("lol", responses = ["a", "b", "c", "d"]);
+    createQuestion("lol", responses = ["a", "b", "c", "d"]);
+    createQuestion("lol", responses = ["a", "b", "c", "d"]);
+    createQuestion("lol", responses = ["a", "b", "c", "d"]);
+
+    window.location = "#q1"; //Send to question 1 page
+
+    //Depending on the page that is in the viewport, the selected answer will log itself to answerObj and send the user to the next question.
     const listItem = document.querySelectorAll("li");
-
-    console.log(listItem);
-
-    //Add event listener for list items
-
-    // listItem.addEventListener("click", function () {
-
-    //     console.log("List Item pressed!");
-
-    // });
-
     for (let i = 0; i < listItem.length; i++) {
 
         listItem[i].addEventListener("click", function () {
 
-            createQuestion("lol", responses = ["a", "b", "c", "d"]);
-            window.location = "#q" + questionAmount;
+            //find out page id
+            let whatIsMyId = listItem[i].parentNode.parentNode.getAttribute("id");
+            //function to log answer in an object
+            answerObj[whatIsMyId] = listItem[i].textContent;
+            //function to send to next page
+            window.location = "#" + nextPage(whatIsMyId);
+
+            console.log(answerObj);
 
         });
 
     }
 
-}
-
-function startGame() {
-
-    let timeLeft = 60;
-
-    createQuestion("lol", responses = ["a", "b", "c", "d"]);
-    window.location = "#q" + questionAmount;
-
+    //Timer
     let timer = setInterval(() => {
 
         if (questionAmount === 10) {
@@ -110,6 +122,28 @@ function startGame() {
         timeLeft--;
 
     }, 1000);
+
+    //Submit Answers
+
+
+}
+
+function nextPage(id) {
+
+    let nextPage = "";
+
+    switch (id) {
+        case "q1":
+            return "q2";
+        case "q2":
+            return "q3";
+        case "q3":
+            return "q4";
+        case "q4":
+            return "q5";
+        case "q5":
+            return "landing";
+    }
 
 }
 
