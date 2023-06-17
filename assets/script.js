@@ -18,15 +18,7 @@ function createQuestion(question, responses) {
 
     //create responses
     const ulEl = document.createElement("ul");
-    const responseEl01 = document.createElement("li");
-    const responseEl02 = document.createElement("li");
-    const responseEl03 = document.createElement("li");
-    const responseEl04 = document.createElement("li");
-
-    // for (let i = 0; i < responses.length; i++) {
-
-
-    // }
+    let responseEl = [];
 
     //append all
 
@@ -35,15 +27,13 @@ function createQuestion(question, responses) {
     sectionIdEl.appendChild(questionEl);
     sectionIdEl.appendChild(ulEl);
 
-    responseEl01.textContent = responses[0];
-    sectionIdEl.children[1].appendChild(responseEl01);
-    responseEl02.textContent = responses[1];
-    sectionIdEl.children[1].appendChild(responseEl02);
-    responseEl03.textContent = responses[2];
-    sectionIdEl.children[1].appendChild(responseEl03);
-    responseEl04.textContent = responses[3];
-    sectionIdEl.children[1].appendChild(responseEl04);
+    for (let i = 0; i < responses.length; i++) { //Render list items to page
 
+        responseEl[i] = document.createElement("li"); //Create list item
+        responseEl[i].textContent = responses[i]; //Add response to list item
+        sectionIdEl.children[1].appendChild(responseEl[i]); //Append list item
+
+    }
 }
 
 ;
