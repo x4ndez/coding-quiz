@@ -85,15 +85,15 @@ function startGame() {
 
     window.location = "#q1"; //Send to question 1 page
 
-    //Adds question numbers to footer
+    //Adds question number buttons to footer
     let questionSelectArray = [];
 
     for (let i = 0; i < questionAmount; i++) {
 
-        questionSelectArray[i] = document.createElement("span");
-        questionSelectArray[i].textContent = i + 1;
-        questionSelectArray[i].setAttribute("href", "#q" + (i + 1));
-        questionSelect.appendChild(questionSelectArray[i]);
+        questionSelectArray[i] = document.createElement("span"); //Create span
+        questionSelectArray[i].textContent = i + 1; //Add the question number to the span
+        questionSelectArray[i].setAttribute("href", "#q" + (i + 1)); //Attach the href where the button will send the page
+        questionSelect.appendChild(questionSelectArray[i]); //Render page button
 
         questionSelectArray[i].addEventListener("click", function () {
 
