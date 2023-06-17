@@ -9,6 +9,7 @@ const questionContainer = document.querySelector("#question-container");
 const startGameBtn = document.querySelector("#start-game");
 const header = document.querySelector("header");
 const timerEl = document.querySelector("#timer");
+const questionSelect = document.querySelector("footer");
 
 let questionAmount = 0;
 let responses = [];
@@ -83,6 +84,24 @@ function startGame() {
     createQuestion("lol", responses = ["a", "b", "c", "d"]);
 
     window.location = "#q1"; //Send to question 1 page
+
+    //Adds question numbers to footer
+    let questionSelectArray = [];
+
+    for (let i = 0; i < questionAmount; i++) {
+
+        questionSelectArray[i] = document.createElement("span");
+        questionSelectArray[i].textContent = i + 1;
+        questionSelectArray[i].setAttribute("href", "#q" + (i + 1));
+        questionSelect.appendChild(questionSelectArray[i]);
+
+        questionSelectArray[i].addEventListener("click", function () {
+
+            window.location = questionSelectArray[i].getAttribute("href");
+
+        });
+
+    }
 
     //Depending on the page that is in the viewport, the selected answer will log itself to answerObj and send the user to the next question.
     const listItem = document.querySelectorAll("li");
