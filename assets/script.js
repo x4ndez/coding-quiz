@@ -1,24 +1,17 @@
+// Outstanding works:
+//Timer & correction
+//end game
+//footer
+//view test history
+//local storage
+
 const questionContainer = document.querySelector("#question-container");
 const startGameBtn = document.querySelector("#start-game");
+const header = document.querySelector("header");
+const timerEl = document.querySelector("#timer");
 
 let questionAmount = 0;
 let responses = [];
-
-// function mainMenu() {
-
-//     while (questionContainer.firstChild) { //Clear the container
-
-//         questionContainer.removeChild(questionContainer.firstChild);
-
-//     }
-
-//     const startGameBtnEl = document.createElement("button");
-//     startGameBtnEl.
-//     const startGameBtn = document.querySelector("#start-game");
-
-
-
-// }
 
 function init() {
 
@@ -67,7 +60,7 @@ function createQuestion(question, responses) {
 
     }
 
-    const listItem = sectionIdEl.children[1].children;
+    const listItem = document.querySelectorAll("li");
 
     console.log(listItem);
 
@@ -75,20 +68,49 @@ function createQuestion(question, responses) {
 
     // listItem.addEventListener("click", function () {
 
-    //     console.log("List Item presses!");
+    //     console.log("List Item pressed!");
 
     // });
+
+    for (let i = 0; i < listItem.length; i++) {
+
+        listItem[i].addEventListener("click", function () {
+
+            createQuestion("lol", responses = ["a", "b", "c", "d"]);
+            window.location = "#q" + questionAmount;
+
+        });
+
+    }
 
 }
 
 function startGame() {
 
+    let timeLeft = 60;
+
     createQuestion("lol", responses = ["a", "b", "c", "d"]);
-    window.location = "#q1";
+    window.location = "#q" + questionAmount;
+
+    let timer = setInterval(() => {
+
+        if (questionAmount === 10) {
+
+            console.log("FINISH");
+            clearInterval(timer);
+
+        } else if (timeLeft === 0) {
+
+            console.log("LOSE");
+            clearInterval(timer);
+
+        }
+
+        timerEl.textContent = timeLeft;
+        timeLeft--;
+
+    }, 1000);
 
 }
-
-// createQuestion("lol", responses = ["a", "b", "c", "d"]);
-// createQuestion("lol", responses = ["a", "b", "c", "d"]);
 
 init();
