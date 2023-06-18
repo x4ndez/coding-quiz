@@ -204,7 +204,7 @@ function endGameScreen() {
 
     endGameEl.innerHTML += "<h1>Good Game!</h1>";
     endGameEl.innerHTML += `<p>Your score was ${points}/${questionAmount}</p>`;
-    endGameEl.innerHTML += "<p>Type in your initials in the box below and submit your results!</p>";
+    endGameEl.innerHTML += "<p>Type in your initials in the box below and submit your results!  We will not share your data with anyone... just Google</p>";
     endGameEl.innerHTML += '<input type="text" id="initials" />';
     endGameEl.innerHTML += '<button id="submit">Submit</button>';
 
@@ -214,8 +214,12 @@ function endGameScreen() {
     submitBtn.addEventListener("click", () => {
 
         console.log("Submit button clicked!");
+
         playerStats.initials = initialsField.value;
         playerStats.points = points;
+
+        console.log("lol");
+        window.location = "index.html";
 
     });
 
