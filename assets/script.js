@@ -13,13 +13,14 @@ const questionSelect = document.querySelector("footer");
 
 let questionAmount = 0;
 let responses = [];
+let points = 0;
 let answerObj = {
 
-    q1: "",
-    q2: "",
-    q3: "",
-    q4: "",
-    q5: "",
+    q1: "JavaScript",
+    q2: "A Monash coding bootcamp",
+    q3: "I go hard in the edX",
+    q4: "All of the above",
+    q5: "Curly brackets",
 
 }
 
@@ -33,8 +34,6 @@ function init() {
         startGame();
 
     });
-
-    // Event Listener: Dark theme
 
     // Event Listener: View Quiz History
 
@@ -77,13 +76,14 @@ function createQuestion(question, responses) {
 function startGame() {
 
     let timeLeft = 60; //Set time limit
+    const timeSubtract = 20; //How much time will be removed for an incorrect answer
 
     //Create pages with questions and answers
-    createQuestion("lol", responses = ["a", "b", "c", "d"]);
-    createQuestion("lol", responses = ["a", "b", "c", "d"]);
-    createQuestion("lol", responses = ["a", "b", "c", "d"]);
-    createQuestion("lol", responses = ["a", "b", "c", "d"]);
-    createQuestion("lol", responses = ["a", "b", "c", "d"]);
+    createQuestion("Of the four languages, which is the best programming language?", responses = ["Java (Is that even a language?)", "JavaScript", "C", "Python"]);
+    createQuestion("What do you want for Christmas?", responses = ["1 trillion dollars", "A fluffy puppy", "A new house", "A Monash coding bootcamp"]);
+    createQuestion("Do you even script, bro?", responses = ["Like, Java?", "No", "I go hard in the edX", "I'm a lvl 99 warlock, I don't need no script."]);
+    createQuestion("Arrays in JavaScript can be used to store...", responses = ["Integers", "Strings", "Arrays", "All of the above"]);
+    createQuestion("The condition in an if/else statement is enclosed with...", responses = ["Curly brackets", "Double quotes", "Single quotes", "Colons"]);
 
     window.location = "#q1"; //Send to question 1 page
 
@@ -113,12 +113,45 @@ function startGame() {
 
             //find out page id
             let whatIsMyId = listItem[i].parentNode.parentNode.getAttribute("id");
-            //function to log answer in an object
-            answerObj[whatIsMyId] = listItem[i].textContent;
-            //function to send to next page
-            window.location = "#" + nextPage(whatIsMyId);
 
-            console.log(answerObj);
+            //Is the answer correct?
+            if (listItem[i].textContent === answerObj[whatIsMyId]) { //If yes...
+
+                //add point
+                points++;
+
+                //function to send to next page
+                window.location = "#" + nextPage(whatIsMyId);
+
+            } else { //If no...
+
+                //render -20 notifier
+                let removeTimeEl = document.createElement("span");
+                removeTimeEl.setAttribute("id", "subtract-time");
+                removeTimeEl.setAttribute("style", "opacity: 1;");
+                removeTimeEl.textContent = "-" + timeSubtract + " Incorrect!";
+
+                header.appendChild(removeTimeEl);
+
+                let incorrectRemove = setInterval(() => { //Reduce opacity over time and remove the element when opacity is 0.
+
+                    if (removeTimeEl.style.opacity <= 0) {
+
+                        clearInterval(incorrectRemove);
+                        removeTimeEl.remove();
+
+                    } else if (removeTimeEl.style.opacity > 0) {
+
+                        removeTimeEl.style.opacity -= 0.05;
+
+                    }
+
+                }, 100);
+
+                //remove 20 seconds from time left.
+                timeLeft -= timeSubtract;
+
+            }
 
         });
 
@@ -127,13 +160,14 @@ function startGame() {
     //Timer
     let timer = setInterval(() => {
 
-        if (questionAmount === 10) {
+        if (points === 5) {
 
             console.log("FINISH");
             clearInterval(timer);
 
-        } else if (timeLeft === 0) {
+        } else if (timeLeft <= 0) {
 
+            timeLeft = 0;
             console.log("LOSE");
             clearInterval(timer);
 

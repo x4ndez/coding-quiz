@@ -7,6 +7,7 @@
     --button-hover-color: #aaaaaa;
     --question-select-bgcolor: #a3a3a3;
     --question-select-bgcolor-hover: #727272;
+    --subtract-time-color: #c4c4c4;
 
 }
 
@@ -139,6 +140,14 @@ footer span:hover {
 #timer {
 
     font-size: 3rem;
+
+}
+
+#subtract-time {
+
+    margin-left: 1rem;
+    color: var(--subtract-time-color);
+    font-size: 2rem;
 
 }
 
