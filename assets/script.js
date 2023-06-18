@@ -1,7 +1,5 @@
 // Outstanding works:
-//Timer & correction
 //end game
-//footer
 //view test history
 //local storage
 
@@ -21,6 +19,13 @@ let answerObj = {
     q3: "I go hard in the edX",
     q4: "All of the above",
     q5: "Curly brackets",
+
+}
+
+let playerStats = {
+
+    initials: "",
+    points: 0,
 
 }
 
@@ -160,15 +165,20 @@ function startGame() {
     //Timer
     let timer = setInterval(() => {
 
-        if (points === 5) {
-
-            console.log("FINISH");
-            clearInterval(timer);
-
-        } else if (timeLeft <= 0) {
+        if (points === 5 || timeLeft <= 0) {
 
             timeLeft = 0;
-            console.log("LOSE");
+
+            while (questionSelect.children[0]) {
+
+                questionSelect.children[0].remove();
+
+            }
+
+            timerEl.remove();
+
+            endGameScreen();
+
             clearInterval(timer);
 
         }
@@ -178,8 +188,36 @@ function startGame() {
 
     }, 1000);
 
-    //Submit Answers
 
+}
+
+function endGameScreen() {
+
+    let endGameEl = document.createElement("section");
+    // let h1El = document.createElement("h1");
+    // let pEl = document.createElement("p");
+    // let textBoxEl = document.createElement("text");
+    endGameEl.setAttribute("id", "end-game");
+    questionContainer.append(endGameEl);
+
+    window.location = "#end-game";
+
+    endGameEl.innerHTML += "<h1>Good Game!</h1>";
+    endGameEl.innerHTML += `<p>Your score was ${points}/${questionAmount}</p>`;
+    endGameEl.innerHTML += "<p>Type in your initials in the box below and submit your results!</p>";
+    endGameEl.innerHTML += '<input type="text" id="initials" />';
+    endGameEl.innerHTML += '<button id="submit">Submit</button>';
+
+    const submitBtn = document.querySelector("#submit");
+    const initialsField = document.querySelector("#initials");
+
+    submitBtn.addEventListener("click", () => {
+
+        console.log("Submit button clicked!");
+        playerStats.initials = initialsField.value;
+        playerStats.points = points;
+
+    });
 
 }
 
@@ -196,8 +234,8 @@ function nextPage(id) {
             return "q4";
         case "q4":
             return "q5";
-        case "q5":
-            return "landing";
+        // case "q5":
+        //     return "landing";
     }
 
 }
