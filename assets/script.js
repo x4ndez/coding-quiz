@@ -44,7 +44,6 @@ function init() {
 
     viewScoresBtn.addEventListener("click", function () {
 
-        console.log(scoreListToggle);
         console.log("View Scores button pressed!");
 
         if (scoreListToggle === 0) {
@@ -69,29 +68,16 @@ function init() {
                 scoreListItem[i].textContent = `${lSInitials[i]}: ${lSScore[i]}`;
                 scoreList.append(scoreListItem[i]);;
 
-                // console.log(scoreListItem[i]);
-                // console.log(`${lSInitials[i]}: ${lSScore[i]}`);
-
-
             }
 
             this.append(scoreList);
-            console.log(scoreList);
-
 
         } else {
 
             scoreListToggle = 0;
-
             document.querySelector("#score-list").remove();
 
         }
-
-        console.log(scoreListToggle);
-
-
-
-
 
     });
 
