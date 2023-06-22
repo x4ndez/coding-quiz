@@ -5,6 +5,7 @@
 
 const questionContainer = document.querySelector("#question-container");
 const startGameBtn = document.querySelector("#start-game");
+const viewScoresBtn = document.querySelector("#view-scores");
 const header = document.querySelector("header");
 const timerEl = document.querySelector("#timer");
 const questionSelect = document.querySelector("footer");
@@ -41,6 +42,8 @@ function init() {
     });
 
     // Event Listener: View Quiz History
+
+
 
 }
 
@@ -220,8 +223,7 @@ function endGameScreen() {
 
         localStoragePush(initialsField.value);
 
-        console.log("lol");
-        // window.location = "index.html";
+        window.location = "index.html";
 
     });
 
@@ -254,7 +256,6 @@ function localStoragePush(initialsField) {
         localStorage.setItem("userScore", newUserScoreArray);
 
     }
-
 
 }
 
