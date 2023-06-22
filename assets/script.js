@@ -22,13 +22,6 @@ let answerObj = {
 
 }
 
-let playerStats = {
-
-    initials: "",
-    points: 0,
-
-}
-
 function init() {
 
     // Event Listener: Start Game
@@ -241,7 +234,7 @@ function endGameScreen() {
 
     endGameEl.innerHTML += "<h1>Good Game!</h1>";
     endGameEl.innerHTML += `<p>Your score was ${points}/${questionAmount}</p>`;
-    endGameEl.innerHTML += "<p>Type in your initials in the box below and submit your results!  We will not share your data with anyone... just Google</p>";
+    endGameEl.innerHTML += "<p>Type in your initials in the box below and submit your results!  We will not share your data with anyone... just Google.</p>";
     endGameEl.innerHTML += '<input type="text" id="initials" />';
     endGameEl.innerHTML += '<button id="submit" class="btn btn-neutral">Submit</button>';
 
@@ -252,10 +245,7 @@ function endGameScreen() {
 
         console.log("Submit button clicked!");
 
-        playerStats.initials = initialsField.value;
-        playerStats.points = points;
-
-        localStoragePush(initialsField.value);
+        localStoragePush(initialsField.value.toUpperCase());
 
         window.location = "index.html";
 
@@ -271,15 +261,14 @@ function localStoragePush(initialsField) {
     let lSInitials = localStorage.getItem("userInitials");
     let lSScore = localStorage.getItem("userScore");
 
-
-    if (lSInitials === null && lSScore === null) {
+    if (lSInitials === null && lSScore === null) { // If there's no localStorage data, create one and add to it.
 
         userInitialsArray.push(initialsField);
         localStorage.setItem("userInitials", userInitialsArray);
         userScoreArray.push(points);
         localStorage.setItem("userScore", userScoreArray);
 
-    } else {
+    } else { //If there's previous localStorage data, add to it.
 
         let newUserInitialsArray = userInitialsArray.concat(lSInitials);
         let newUserScoreArray = userScoreArray.concat(lSScore);
