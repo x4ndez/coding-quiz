@@ -39,38 +39,48 @@ function init() {
 
         console.log("View Scores button pressed!");
 
-        if (scoreListToggle === 0) {
+        if (localStorage.getItem("userInitials") === null) {
 
-            scoreListToggle = 1;
-
-            let lSInitials = localStorage.getItem("userInitials").split(",");
-            let lSScore = localStorage.getItem("userScore").split(",");
-
-            //create ol
-            let scoreList = document.createElement("ul");
-            scoreList.setAttribute("id", "score-list");
-
-            //create li
-            let scoreListItem = [];
-
-            //loop li append with results
-
-            for (let i = 0; i < lSInitials.length; i++) {
-
-                scoreListItem[i] = document.createElement("li");
-                scoreListItem[i].textContent = `${lSInitials[i]}: ${lSScore[i]}`;
-                scoreList.append(scoreListItem[i]);;
-
-            }
-
-            this.append(scoreList);
+            console.log("Do nothing");
 
         } else {
 
-            scoreListToggle = 0;
-            document.querySelector("#score-list").remove();
+            if (scoreListToggle === 0) {
+
+                scoreListToggle = 1;
+
+                let lSInitials = localStorage.getItem("userInitials").split(",");
+                let lSScore = localStorage.getItem("userScore").split(",");
+
+                //create ol
+                let scoreList = document.createElement("ul");
+                scoreList.setAttribute("id", "score-list");
+
+                //create li
+                let scoreListItem = [];
+
+                //loop li append with results
+
+                for (let i = 0; i < lSInitials.length; i++) {
+
+                    scoreListItem[i] = document.createElement("li");
+                    scoreListItem[i].textContent = `${lSInitials[i]}: ${lSScore[i]}`;
+                    scoreList.append(scoreListItem[i]);;
+
+                }
+
+                this.append(scoreList);
+
+            } else {
+
+                scoreListToggle = 0;
+                document.querySelector("#score-list").remove();
+
+            }
 
         }
+
+
 
     });
 
