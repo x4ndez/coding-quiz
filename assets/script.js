@@ -234,9 +234,6 @@ function startGame() {
 function endGameScreen() {
 
     let endGameEl = document.createElement("section");
-    // let h1El = document.createElement("h1");
-    // let pEl = document.createElement("p");
-    // let textBoxEl = document.createElement("text");
     endGameEl.setAttribute("id", "end-game");
     questionContainer.append(endGameEl);
 
@@ -246,7 +243,7 @@ function endGameScreen() {
     endGameEl.innerHTML += `<p>Your score was ${points}/${questionAmount}</p>`;
     endGameEl.innerHTML += "<p>Type in your initials in the box below and submit your results!  We will not share your data with anyone... just Google</p>";
     endGameEl.innerHTML += '<input type="text" id="initials" />';
-    endGameEl.innerHTML += '<button id="submit">Submit</button>';
+    endGameEl.innerHTML += '<button id="submit" class="btn btn-neutral">Submit</button>';
 
     const submitBtn = document.querySelector("#submit");
     const initialsField = document.querySelector("#initials");

@@ -1,6 +1,6 @@
 :root {
 
-    --gen-font-color: black;
+    --gen-font-color: grey;
     --background-color: white;
     --footer-color: #c4c4c4;
     --button-color: var(--footer-color);
@@ -137,6 +137,18 @@ footer span:hover {
 
 }
 
+input[type=text] {
+
+    background-color: var(--background-color);
+    border-radius: 0.2rem;
+    border: 2px solid var(--button-color);
+    box-sizing: border-box;
+    color: var(--gen-font-color);
+    padding: 0.5rem;
+    margin: 0.5rem;
+
+}
+
 #timer {
 
     font-size: 3rem;
@@ -204,8 +216,6 @@ footer span:hover {
 
     width: 20%;
     height: 80%;
-
-    /* background-color: green; */
 
 }
 
