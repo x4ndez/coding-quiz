@@ -218,10 +218,43 @@ function endGameScreen() {
         playerStats.initials = initialsField.value;
         playerStats.points = points;
 
+        localStoragePush(initialsField.value);
+
         console.log("lol");
-        window.location = "index.html";
+        // window.location = "index.html";
 
     });
+
+}
+
+function localStoragePush(initialsField) {
+
+    let userInitialsArray = [];
+    let userScoreArray = [];
+
+    let lSInitials = localStorage.getItem("userInitials");
+    let lSScore = localStorage.getItem("userScore");
+
+
+    if (lSInitials === null && lSScore === null) {
+
+        userInitialsArray.push(initialsField);
+        localStorage.setItem("userInitials", userInitialsArray);
+        userScoreArray.push(points);
+        localStorage.setItem("userScore", userScoreArray);
+
+    } else {
+
+        let newUserInitialsArray = userInitialsArray.concat(lSInitials);
+        let newUserScoreArray = userScoreArray.concat(lSScore);
+
+        newUserInitialsArray.push(initialsField);
+        localStorage.setItem("userInitials", newUserInitialsArray);
+        newUserScoreArray.push(points);
+        localStorage.setItem("userScore", newUserScoreArray);
+
+    }
+
 
 }
 
