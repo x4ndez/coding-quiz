@@ -151,6 +151,23 @@ footer span:hover {
 
 }
 
+#view-scores {
+
+    position: relative;
+
+}
+
+#view-scores ul {
+
+    position: absolute;
+    top: 0%;
+    left: 110%;
+
+    background-color: rgba(0, 0, 0, 0.5);
+
+
+}
+
 .side-main {
 
     float: left;

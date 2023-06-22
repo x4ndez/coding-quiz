@@ -1,7 +1,5 @@
 // Outstanding works:
-//end game
 //view test history
-//local storage
 
 const questionContainer = document.querySelector("#question-container");
 const startGameBtn = document.querySelector("#start-game");
@@ -11,6 +9,7 @@ const timerEl = document.querySelector("#timer");
 const questionSelect = document.querySelector("footer");
 
 let questionAmount = 0;
+let scoreListToggle = 0;
 let responses = [];
 let points = 0;
 let answerObj = {
@@ -43,6 +42,58 @@ function init() {
 
     // Event Listener: View Quiz History
 
+    viewScoresBtn.addEventListener("click", function () {
+
+        console.log(scoreListToggle);
+        console.log("View Scores button pressed!");
+
+        if (scoreListToggle === 0) {
+
+            scoreListToggle = 1;
+
+            let lSInitials = localStorage.getItem("userInitials").split(",");
+            let lSScore = localStorage.getItem("userScore").split(",");
+
+            //create ol
+            let scoreList = document.createElement("ul");
+            scoreList.setAttribute("id", "score-list");
+
+            //create li
+            let scoreListItem = [];
+
+            //loop li append with results
+
+            for (let i = 0; i < lSInitials.length; i++) {
+
+                scoreListItem[i] = document.createElement("li");
+                scoreListItem[i].textContent = `${lSInitials[i]}: ${lSScore[i]}`;
+                scoreList.append(scoreListItem[i]);;
+
+                // console.log(scoreListItem[i]);
+                // console.log(`${lSInitials[i]}: ${lSScore[i]}`);
+
+
+            }
+
+            this.append(scoreList);
+            console.log(scoreList);
+
+
+        } else {
+
+            scoreListToggle = 0;
+
+            document.querySelector("#score-list").remove();
+
+        }
+
+        console.log(scoreListToggle);
+
+
+
+
+
+    });
 
 
 }
